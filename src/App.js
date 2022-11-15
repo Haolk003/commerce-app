@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react'
+import { Route,Routes,useNavigate,Navigate } from 'react-router-dom';
+import { useSelector,useDispatch } from 'react-redux';
 
-function App() {
+import {Home,User,UpdateUser,NewUser,Products,SingleProduct,NewProduct,Login} from './Pages';
+import {FetchUser,sendCartUser,FetchNewUser} from './store/apiCall';
+const App = () => {
+  const navigate=useNavigate();
+  const dispatch=useDispatch();
+  const [request,setRequest]=useState(false);
+  const user=useSelector((state)=> state.auth.user);
+  
+  useEffect(()=>{
+    if(request){
+      dispatch(sendCartUser(user));
+    }
+    setRequest(true);
+  },[user]);
+  useEffect(()=>{
+    dispatch(FetchUser());
+  },[])
+  useEffect(()=>{
+if(!user?.isAdmin){
+  navigate('/login');
+  }
+ 
+  },[user]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+        <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/user' element={<User />} />
+            <Route path='/user/:id' element={<UpdateUser />} />
+            <Route path='/newUser' element={<NewUser />} />
+            <Route path='/products' element={<Products />} />
+            <Route path='/products/:id' element={<SingleProduct />} />
+            <Route path='/newProduct' element={<NewProduct />} />
+            <Route path='/login' element={<Login />} />
+        </Routes>
     </div>
-  );
+  )
 }
 
 export default App;
