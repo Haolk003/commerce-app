@@ -1,0 +1,9 @@
+export {default as Navbar} from './Navbar';
+export {default as Announerment} from './Announerment';
+export {default as Slider} from './Slider';
+export {default as Category} from './Category';
+export {default as Products} from './Products'
+export {default as Product} from './Product';
+export {default as NewLetter} from './NewLetter';
+export {default as Footer} from './Footer';
+export {default as CartItem} from './CartItem';
