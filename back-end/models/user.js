@@ -1,4 +1,4 @@
-const { timeStamp } = require('console');
+
 const mongoose=require('mongoose');
 const userSchema=mongoose.Schema({
     userName:{
@@ -6,6 +6,7 @@ const userSchema=mongoose.Schema({
         required:true,
         unique:true
     },
+    
     email:{
         type:String,
         require:true,
