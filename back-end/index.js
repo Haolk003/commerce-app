@@ -23,6 +23,7 @@ async function main (){
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
+
 app.use('/api/product',productRoute);
 app.use('/api/auth',AuthRoute);
 app.use('/api/user',UserRoute);
